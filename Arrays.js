@@ -1,11 +1,13 @@
 //Remove duplicates from an array
 {
-  let arr1 = [1, 3, 4, 5, 5, 6, 7, 8, 8];
+  let arr1 = [1,1,2,2,2,3, 4, 5, 5, 6, 7, 8, 8];
   function removeDupes(arr) {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === arr[i + 1]) {
-        arr.splice(i + 1, 1);
+      let counter = 0
+    for (let i = 0; i < arr.length-1; i++) {       
+      if (arr[i] < arr[i + 1]) {
+         counter++
       }
+      arr[counter] = arr[i+1]
     }
     return arr;
   }
@@ -39,4 +41,21 @@
     return missing;
   }
   console.log(leftShift(arr1));
+}
+
+// remove the number pass as the param from the array 
+{
+    let arr1 = [1,2,3,2,3,4,3,8];
+  function removeNum(arr,num) {
+      let x = 0
+    for (let i = 0; i < arr.length; i++) {
+        if(arr[i] !== num){
+            console.log(x,i)
+            arr[x] = arr[i]
+            x = x+1
+        }
+    }
+    return {arr,x};
+  }
+  console.log(removeNum(arr1, 3));
 }
