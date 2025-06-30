@@ -59,3 +59,64 @@
   }
   console.log(removeNum(arr1, 3));
 }
+
+//Reverse String 
+{
+    let arr1 = ["h", "e", "l", "l", "o"];
+  function revStr(arr) {
+   let len = arr.length;
+    let halfLen = Math.floor(len / 2)
+    let x = len - 1; 
+    for (let i = 0; i < halfLen; i++) {
+      let tempval = arr[i]
+      arr[i] = arr[x]
+      arr[x] = tempval
+      x = x-1
+    }
+    return arr;
+  }
+  console.log(revStr(arr1));
+}
+
+//Best time to buy and sell stock
+{
+    let arr1 = [7,5,3,9,1,8];
+  function stock(arr) {
+   let buy =arr[0]
+   let sell = arr[arr.length-1]
+    for(let i = 1;i<arr.length-1;i++){
+        if(buy > arr[i]){
+            buy = arr[i]
+        }
+        if( arr[i] - buy > sell){
+            sell = arr[i]
+        }
+        console.log(buy,sell)
+    }
+    return {buy, sell};
+  }
+  console.log(stock(arr1));
+}
+
+//merge two sorted arrays 
+{
+    let arr1 = [3,5,6,7,8,9,9]
+let arr2 = [1,3,6,7,10]
+  function sortTwo(arr1,arr2) {
+      let arr1Copy = []
+      let length = arr1.length + arr2.length 
+      let j =0 , k =0
+      for(let i = 0; i < length ; i++){
+        if( k >= arr2.length || (j <arr1.length && arr1[j] < arr2[k])){
+            arr1Copy.push(arr1[j])
+            j++
+        }
+        else {
+            arr1Copy.push(arr2[k])
+            k++
+        }
+      }
+    return arr1Copy ;
+  }
+  console.log(sortTwo(arr1,arr2));
+}
