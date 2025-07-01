@@ -120,3 +120,57 @@ let arr2 = [1,3,6,7,10]
   }
   console.log(sortTwo(arr1,arr2));
 }
+
+//move zeros to the end
+{
+    let arr1 = [0,1,0,3,12]
+  function moveZeros(arr) {
+    let k = arr.length-1;
+    let temp
+    for(let i = 0; i< arr.length ; i++){
+        if(arr[i] === 0 && i<k ){  
+        temp = arr[k]
+        arr[k] = arr[i]
+        arr[i] = temp
+        k--
+        }
+    }
+    return arr;
+  }
+  console.log(moveZeros(arr1));
+}
+
+//maximum number of consecutive 1s
+{
+    let arr1 = [1,1,0,1,1,1]
+  function conOnes(arr) {
+    let count = 0
+    let maxcount = 0
+    for(let i = 0; i< arr.length ; i++){
+       if(arr[i] === 1){
+           count++
+           if(maxcount< count){
+               maxcount = count
+           }
+       }
+       else{
+           count = 0
+       }
+    }
+    return maxcount;
+  }
+  console.log(conOnes(arr1));
+}
+
+//maximum number of consecutive 1s
+{
+    let arr1 = [5,4,2,1,3,7,0]
+  function misOnes(arr,n) {
+    let sum = n*(n+1)/2
+    for(let i = 0 ; i < arr.length; i++){
+        sum = sum - arr[i]
+    }
+    return sum;
+  }
+  console.log(misOnes(arr1,7));
+}
