@@ -174,3 +174,25 @@ let arr2 = [1,3,6,7,10]
   }
   console.log(misOnes(arr1,7));
 }
+
+//find a number which is not present twice in a array 
+{
+    let arr1 = [4,1,4,3,2,1,2]
+  function misOnes(arr) {
+    let hash = {}
+    for(let i = 0 ; i < arr.length; i++){
+        if(!hash[arr[i]]){
+        hash[arr[i]] = 1
+    }
+    else{
+        hash[arr[i]]++
+    }
+    }
+   for(let i = 0 ; i < arr.length; i++){
+       if(hash[arr[i]] === 1){
+           return arr[i]
+       }
+   }
+  }
+  console.log(misOnes(arr1));
+}
