@@ -88,3 +88,84 @@ function paliTwo(s){
 }
 console.log(paliTwo(str2)) 
 }
+
+// longest common prefix ( complex one do rewise)
+{
+let strs = ["flower","flow","flaw"]
+function bigPrefix(strs){
+    let x= 0
+    while(x<strs[0].length){ //- Loop continues until x reaches the end of the first string (strs[0]).
+//This ensures that you don’t try to compare characters beyond the length of the first string
+        let ch = strs[0][x]
+        for(let i =1; i< strs.length; i++){ //- Iterates over the rest of the strings (starting from index 1), comparing the character at index x.
+
+            if(ch !== strs[i][x] || i === strs[i].length){  //(- If the character ch is not equal to the character at index x of the i-th string.
+// - ❌ i === strs[i].length – This condition is incorrect. It mistakenly compares index i with the length of strs[i], which doesn’t logically check for string bounds. You likely meant:
+// )
+                return strs[0].substring(0,x) // - If there's a mismatch at index x, returns the substring from index 0 to x in the first string
+            }
+        }
+        ++x
+    }   
+    return strs[0]
+}
+console.log(bigPrefix(strs))
+}
+
+//valid anagram ( anagram is when both the 2 string s have same number of characters and same alphabet with same repertations)
+{
+let strs1 = "anagram"
+let strs2 = "nagaram"
+function bigPrefix(s1,s2){
+   let map1 = {}   // using hash map appraoch
+   let map2 = {}
+   if(s1.length !== s2.length){  // if the length of both the given Strings is not same then return false directly 
+       return false
+   }
+   for(let i = 0 ; i<s1.length; i++){   //iterate over both strings and store value in hashmaps 
+     if(!map1[s1[i]]){
+         map1[s1[i]] = 1 
+     }else{
+         map1[s1[i]]++
+     }
+   }
+   for(let i = 0 ; i<s1.length; i++){
+     if(!map2[s1[i]]){
+         map2[s1[i]] = 1
+     }else{
+         map2[s1[i]]++
+     }
+   }
+    return JSON.stringify(map1) === JSON.stringify(map2) //{ a: 3, n: 1, g: 1, r: 1, m: 1 } === { a: 3, n: 1, g: 1, r: 1, m: 1 }
+}
+console.log(bigPrefix(strs1,strs2))  //true
+}
+
+//valid anagram using only one hash map same question as above
+{
+let strs1 = "anagram"
+let strs2 = "nagaram"
+
+function bigPrefix(s1,s2){
+   let map1 = {}
+   if(s1.length !== s2.length){
+       return false
+   }
+   for(let i = 0 ; i<s1.length; i++){
+     if(!map1[s1[i]]){
+         map1[s1[i]] = 1 
+     }else{
+         map1[s1[i]]++
+     }
+   }
+   for(let i = 0 ; i<s1.length; i++){  // running the second loop and checking every char in string and decrementing it by one in hashmap 
+     if(!map1[s1[i]] || map1[s1[i] < 0]){ // 2 corner cases are if the char from 2nd string is not present in the hashmap and if the value of char goin less that 0 means a char is present more time s in second string 
+         return false
+     }else{
+         --map1[s1[i]] 
+     }
+   }
+    return true
+}
+console.log(bigPrefix(strs1,strs2))
+}
