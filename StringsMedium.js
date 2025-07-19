@@ -169,3 +169,52 @@ function bigPrefix(s1,s2){
 }
 console.log(bigPrefix(strs1,strs2))
 }
+
+// Isomorphic strings 
+{
+let str1 = "egg"
+let str2 = "add"
+function isoStr(s1,s2){
+    let obj = {} // to store every character and map different value to that by comparing with opther string 
+    let revObj = {} //doing the same vice verse comparing second string with first string each char at a time 
+    let newArr = ""
+    if(s1.length !== s2.length){ //if string of both char is not same then return false 
+        return false
+    }
+    for(let i = 0;i<s1.length;i++){
+        if(!obj[s2[i]] && !revObj[s1[i]]){   // if the value is not present in both obj and revobj then store that value 
+            obj[s2[i]] = s1[i]
+            revObj[s1[i]] = s2[i]
+            newArr += s1[i]
+        }
+        else if(obj[s2[i]]=== s1[i] && revObj[s1[i]]===s2[i]){ // corner cases 
+            newArr += s1[i]
+        }
+    }
+//    console.log(obj,revObj)  //{ a: 'e', d: 'g' } { e: 'a', g: 'd' }
+    return str1 === newArr   
+}
+
+console.log(isoStr(str1,str2)) //true
+}
+
+// Group Anagrams
+{
+let strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+function groupAnagrams(strs){
+      let map = {}; 
+  
+      for (let i = 0; i < strs.length; i++) {
+          let sortedStr = strs[i].split("").sort().join(""); // sort every string alphabetacally like eat and tea becomes aet 
+  
+          if (!map[sortedStr]) {
+              map[sortedStr] = [strs[i]];
+          } else {
+              map[sortedStr].push(strs[i]);
+          }
+      }
+  //  console.log(map) //{ aet: [ 'eat', 'tea', 'ate' ], ant: [ 'tan', 'nat' ], abt: [ 'bat' ] }
+      return Object.values(map);
+  };
+  console.log(groupAnagrams(strs))
+}
